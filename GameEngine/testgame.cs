@@ -24,20 +24,26 @@ namespace GameEngine
             p2 = new Rectangle(new vector(0, 200), new vector(50, 50), Color.Aqua);
             //circle = new Circle(new vector(0, 125), new vector(50, 50), Color.Red);
             //Console.WriteLine("Console");
-
+            
         }
 
 
         public override void OnUpdate()
         {
             //new getCollision(p.Position.X, p2.Position.X, p.Position.Y, p2.Position.Y, p.Scale.Y, p2.Scale.Y, p.Scale.X, p.Scale.X);
-
-            p.Position.Y += 1;
-            p2.Position.Y -= 1;
+           
             if (new physic().getCollision(p.Position.X, p2.Position.X, p.Position.Y, p2.Position.Y, p.Scale.Y, p2.Scale.Y, p.Scale.X, p.Scale.X))
             {
-                p.Position.Y = 25;
-                p2.Position.Y = 200;
+                //p.Position.Y = 25;
+                p.Position.Y -= 2;
+            }
+            if(S)
+            {
+                p.Position.Y += 1;
+            }
+            if (W)
+            {
+                p.Position.Y -= 1;
             }
             //circle.Position.X += 1;
             if (p.Position.X > 500)

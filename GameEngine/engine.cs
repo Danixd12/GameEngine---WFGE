@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Threading;
 using System.Windows;
+using System.Windows.Input;
 
 namespace GameEngine
 {
@@ -46,6 +47,7 @@ namespace GameEngine
         public string Icon = "";
         public Canvas Window = null;
         private Thread GameLoopThread = null;
+        public static bool A, W, S, D;
         public static List<Rectangle> RenderStack = new List<Rectangle>();
         public static List<Circle> RenderStackCircle = new List<Circle>();
 
@@ -56,13 +58,14 @@ namespace GameEngine
             this.Title = title;
             this.Icon = Icon;
             Window = new Canvas();
-            Window.Size = new Size((int)ScreenSize.X, (int)ScreenSize.Y);
+            Window.Size = new System.Drawing.Size((int)ScreenSize.X, (int)ScreenSize.Y);
             Window.Text = this.Title;
             Window.Icon = new Icon("icon.ico");
             Window.Paint += Renderer;
             GameLoopThread = new Thread(GameLoop);
             GameLoopThread.SetApartmentState(ApartmentState.STA);
             GameLoopThread.Start();
+
 
             System.Windows.Forms.Application.Run(Window);
 
@@ -92,6 +95,8 @@ namespace GameEngine
             {
                 try
                 {
+                    W = ((Keyboard.GetKeyStates(Key.W) & KeyStates.Down) > 0 ? true : false);
+                    S = ((Keyboard.GetKeyStates(Key.S) & KeyStates.Down) > 0 ? true : false);
 
                     Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
                     OnUpdate();
