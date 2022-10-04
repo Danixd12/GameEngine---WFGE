@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace GameEngine
 {
-    public class window
+    /// <summary>
+    /// Main context of our project.
+    /// Includes methods for the window, and keyboard.
+    /// </summary>
+    public class context
     {
 
   
@@ -43,6 +48,17 @@ namespace GameEngine
         
         
         }
+
+        public class keyboard
+        {
+            public Boolean readKey(String key)
+            {
+                Key converter = (Key)new KeyConverter().ConvertFromString(key);
+
+                return ((Keyboard.GetKeyStates(converter) & KeyStates.Down) > 0 ? true : false);
+            }
+        }
+            
 
        
     }  

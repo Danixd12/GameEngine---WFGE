@@ -14,12 +14,12 @@ namespace GameEngine
         private Rectangle p2;
         private Circle circle;
 
-        public testgame() : base(new window.newScreen(500, 500), "2d WFGE", "test")
+        public testgame() : base(new context.newScreen(500, 500), "2d WFGE", "test")
         {
         }
         public override void OnLoad()
         {
-            Console.WriteLine(new window.getScreen().Width());
+            Console.WriteLine(new context.getScreen().Width());
             p = new Rectangle(new vector(0, 25), new vector(50, 50), Color.Red);
             p2 = new Rectangle(new vector(0, 200), new vector(50, 50), Color.Aqua);
             //circle = new Circle(new vector(0, 125), new vector(50, 50), Color.Red);
@@ -37,14 +37,11 @@ namespace GameEngine
                 //p.Position.Y = 25;
                 p.Position.Y -= 2;
             }
-            if(S)
+            if(new context.keyboard().readKey("W")) 
             {
                 p.Position.Y += 1;
             }
-            if (W)
-            {
-                p.Position.Y -= 1;
-            }
+          
             //circle.Position.X += 1;
             if (p.Position.X > 500)
             {

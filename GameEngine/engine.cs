@@ -42,7 +42,7 @@ namespace GameEngine
     }
     public abstract class engine
     {
-        public static window.newScreen ScreenSize = new window.newScreen(500, 500);
+        public static context.newScreen ScreenSize = new context.newScreen(500, 500);
         public string Title = "";
         public string Icon = "";
         public Canvas Window = null;
@@ -51,7 +51,7 @@ namespace GameEngine
         public static List<Rectangle> RenderStack = new List<Rectangle>();
         public static List<Circle> RenderStackCircle = new List<Circle>();
 
-        public engine(window.newScreen ScreenSizee, string title, string Icon)
+        public engine(context.newScreen ScreenSizee, string title, string Icon)
         {
             ScreenSize = ScreenSizee;
             
@@ -95,9 +95,7 @@ namespace GameEngine
             {
                 try
                 {
-                    W = ((Keyboard.GetKeyStates(Key.W) & KeyStates.Down) > 0 ? true : false);
-                    S = ((Keyboard.GetKeyStates(Key.S) & KeyStates.Down) > 0 ? true : false);
-
+                    
                     Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
                     OnUpdate();
                     Thread.Sleep(1);
